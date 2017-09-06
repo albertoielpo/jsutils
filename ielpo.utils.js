@@ -3,7 +3,8 @@
  * Compare two json javascript object
  * if forceParseInt = true all values will be cast to int 
  */
-Object.prototype.compareJson = function (obj1, obj2, forceParseInt) {
+Object.prototype.compareJson = function (obj2, forceParseInt) {
+	var obj1 = this;
 	var ret = {}; 
 	
 	if(forceParseInt){
