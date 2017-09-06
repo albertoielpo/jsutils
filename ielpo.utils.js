@@ -31,6 +31,10 @@ Array.prototype.diff = function(a) {
 	return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
 
+function arrayDiff(a,b){
+	return a.filter(function(i) {return b.indexOf(i) < 0;});
+}
+
 /*
  * return true if comparer is found into an array
  * else false
