@@ -3,7 +3,7 @@
  * Compare two json javascript object
  * if forceParseInt = true all values will be cast to int 
  */
-function compareJson (obj1, obj2, forceParseInt) {
+var compareJson = function (obj1, obj2, forceParseInt) {
 	var ret = {}; 
 	
 	if(forceParseInt){
@@ -31,7 +31,7 @@ Array.prototype.diff = function(a) {
 	return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
 
-function arrayDiff(a,b){
+var arrayDiff = function (a,b){
 	return a.filter(function(i) {return b.indexOf(i) < 0;});
 }
 
@@ -60,3 +60,41 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
 		this.push(element);
 	}
 };
+
+/*
+ * this object is empty ?
+ */
+var isEmpty = function (arrToCheck){
+	 for(var key in arrToCheck) {
+		if(typeof key !== undefined){
+			return false;
+		}
+	 }
+	 return true;
+};
+
+/*
+ * Removes all holes from an array
+ * if removeEmptyObject = true , removes also empty objects "{}"
+ * * Example
+ * * var arrayWithHoles = new Array();
+ * * arrayWithHoles[0] = {id: 1, di: 2};
+ * * arrayWithHoles[1] = {}; 	//will be remove if removeEmptyObject = true
+ * * arrayWithHoles[2] = {id: 1, di: 2};
+ * * arrayWithHoles[3] = {};	//will be remove if removeEmptyObject = true
+ * * arrayWithHoles[4] = {id: 1, di: 2};
+ * * arrayWithHoles[5] = {id: 1, di: 2};
+ * * arrayWithHoles[10] = {id: 1, di: 2};
+ * * [6][7][8][9] = will be remove cause undefined
+ */
+var removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){
+	for(var ii=0,index=0; ii<arrayWithHoles.length; ii++){
+		if(!arrayWithHoles[index] || (removeEmptyObject && arrayWithHoles[index] && isEmpty(arrayWithHoles[index]))){
+			arrayWithHoles.splice(index,1);
+			ii--;
+		}else{
+			index++;
+		}
+	}
+	return arrayWithHoles;
+}
