@@ -1,9 +1,9 @@
-
+function Utils () {}
 /*
  * Compare two json javascript object
  * if forceParseInt = true all values will be cast to int 
  */
-var compareJson = function (obj1, obj2, forceParseInt) {
+Utils.compareJson = function (obj1, obj2, forceParseInt) {
 	var ret = {}; 
 	
 	if(forceParseInt){
@@ -31,7 +31,7 @@ Array.prototype.diff = function(a) {
 	return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
 
-var arrayDiff = function (a,b){
+Utils.arrayDiff = function (a,b){
 	return a.filter(function(i) {return b.indexOf(i) < 0;});
 }
 
@@ -64,13 +64,24 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
 /*
  * this object is empty ?
  */
-var isEmpty = function (arrToCheck){
-	for(var key in arrToCheck) {
-		if(typeof key !== "undefined"){
-			return false;
+Utils.isEmpty = function (arrToCheck){
+	if(typeof arrToCheck === "undefined" || arrToCheck == null){
+		return true;
+		
+	}else{
+		if(arrToCheck.length == 0){
+			return true;
+			
+		}else{
+			for(var key in arrToCheck) {
+				if(typeof key !== "undefined"){
+					return false;
+				}
+			 }
 		}
-	 }
-	 return true;
+	}
+	
+	return true;
 };
 
 /*
@@ -87,9 +98,9 @@ var isEmpty = function (arrToCheck){
  * * arrayWithHoles[10] = {id: 1, di: 2};
  * * [6][7][8][9] = will be remove cause undefined
  */
-var removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){
+Utils.removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){
 	for(var ii=0,index=0; ii<arrayWithHoles.length; ii++){
-		if(!arrayWithHoles[index] || (removeEmptyObject && arrayWithHoles[index] && isEmpty(arrayWithHoles[index]))){
+		if(!arrayWithHoles[index] || (removeEmptyObject && arrayWithHoles[index] && Utils.isEmpty(arrayWithHoles[index]))){
 			arrayWithHoles.splice(index,1);
 			ii--;
 		}else{
