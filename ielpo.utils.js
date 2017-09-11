@@ -65,8 +65,8 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
  * this object is empty ?
  */
 var isEmpty = function (arrToCheck){
-	 for(var key in arrToCheck) {
-		if(typeof key !== undefined){
+	for(var key in arrToCheck) {
+		if(typeof key !== "undefined"){
 			return false;
 		}
 	 }
