@@ -109,3 +109,18 @@ Utils.removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){
 	}
 	return arrayWithHoles;
 }
+
+
+Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) {
+	var day = dateToFormat.getDate();
+	var month = dateToFormat.getMonth() + 1;
+	var year = dateToFormat.getFullYear();
+	var hours = dateToFormat.getHours();
+	var minutes = dateToFormat.getMinutes();
+	day = day < 10 ? "" + 0 + day : day;
+	month = month < 10 ? "" + 0 + month : month;
+	hours = hours < 10 ? "" + 0 + hours : hours;
+	minutes = minutes < 10 ? "" + 0 + minutes : minutes;
+	res = day  + "/" + month + "/" +	year + " " + hours + ":" + minutes;	
+	return res;
+}
