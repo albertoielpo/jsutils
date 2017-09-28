@@ -27,3 +27,7 @@ Array.prototype.inArray = function(comparer) { };
 //Push into an Array only if the comparer does not exist
 Array.prototype.pushIfNotExist = function(element, comparer) { };
 ```
+## Thanks to
+```
+Refresh-SF used for js minify: http://refresh-sf.com
+```
