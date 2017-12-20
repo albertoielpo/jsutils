@@ -77,7 +77,7 @@ Utils.isFunction = function(functionToCheck) {
 	var getType = {};
 	return functionToCheck
 			&& getType.toString.call(functionToCheck) === '[object Function]';
-}
+};
 
 /*
  * return true if value is undefined, null, isNotFunction, with length = 0 or an object without keys
@@ -140,7 +140,7 @@ Utils.removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){
 		}
 	}
 	return arrayWithHoles;
-}
+};
 
 
 Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) {
@@ -155,4 +155,24 @@ Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) {
 	minutes = minutes < 10 ? "" + 0 + minutes : minutes;
 	res = day  + "/" + month + "/" +	year + " " + hours + ":" + minutes;	
 	return res;
-}
+};
+
+/*
+ * return true if two valid JSON object are equals
+ * else return false 
+ */
+Utils.areTheseJsonEquals = function(obj1, obj2, forceParseInt){
+	//check if the two objects are valid
+	if(Utils.isUndefinedNullOrEmpty(obj1) && Utils.isUndefinedNullOrEmpty(obj2))
+		return true;
+
+	if((Utils.isUndefinedNullOrEmpty(obj1) && !Utils.isUndefinedNullOrEmpty(obj2)) || (!Utils.isUndefinedNullOrEmpty(obj1) && Utils.isUndefinedNullOrEmpty(obj2)))
+		return false;
+
+	//if two objects are valid
+	var res = twoWaysCompareJson(obj1, obj2, forceParseInt);
+	if(res && res[0] && res[1] && Utils.isUndefinedNullOrEmpty(res[0]) && Utils.isUndefinedNullOrEmpty(res[1]))
+		return true;
+	
+	return false;
+};
