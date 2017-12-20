@@ -1,34 +1,43 @@
 function Utils () {}
 /*
- * Compare two json javascript object
- * if forceParseInt = true all values will be cast to int 
+ * Compare two valid JSON object
+ * return {} if equals
+ * return (obj2-obj1) if not
+ * ====
+ * usage:
+ * compareJson({a: 5, b: 3}, {a: 5, b: 4, c: 3}) //{b: 4, c: 3}
+ * compareJson({a: 5, b: 4, c: 3}, {a: 5, b: 3}); //{b: 3}
  */
 Utils.compareJson = function (obj1, obj2, forceParseInt) {
-	var ret = {}; 
-	
+	var ret = {};
 	if(forceParseInt){
 		for(var i in obj2) {
 			if(!obj1.hasOwnProperty(i) || parseInt(obj2[i]) !== parseInt(obj1[i])) { 		
 				ret[i] = obj2[i]; 
 			}
-		}
-		
+		}		
 	}else{
 		for(var i in obj2) { 	
 			if(!obj1.hasOwnProperty(i) || obj2[i] !== obj1[i]) { 
 				ret[i] = obj2[i]; 
 			} 		
 		} 
-	}
-		
+	}		
 	return ret; 
 }; 
 
 /*
- * Return diff between two arrays 
- */
-Array.prototype.diff = function(a) {
-	return this.filter(function(i) {return a.indexOf(i) < 0;});
+ * Compare two valid JSON object in both directions 
+ * return [{},{}] if equals
+ * return [(obj2-obj1), (obj1-obj2)} if not 
+ * ====
+ * twoWaysCompareJson({a: 5, b: 4, c: 3}, {a: 5, b: 3}); //[{b: 3}, {b: 4, c: 3}]
+ * */
+Utils.twoWaysCompareJson = function (obj1, obj2, forceParseInt) { 
+	var arrList = new Array();
+	arrList.push(Utils.compareJson(obj1, obj2, forceParseInt));
+	arrList.push(Utils.compareJson(obj2, obj1, forceParseInt));
+	return arrList;
 };
 
 Utils.arrayDiff = function (a,b){
@@ -36,10 +45,17 @@ Utils.arrayDiff = function (a,b){
 }
 
 /*
+ * Return diff between two arrays 
+ */
+Array.prototype.difference = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
+/*
  * return true if comparer is found into an array
  * else false
  */
-Array.prototype.inArray = function(comparer) { 
+Array.prototype.isInArray = function(comparer) { 
 	for(var i=0; i < this.length; i++) { 
 		if(comparer(this[i])){
 			return true;
@@ -50,15 +66,33 @@ Array.prototype.inArray = function(comparer) {
 
 /*
  * Push into an Array only if not exists
- * example
- * * var array = [{ name: "tom", text: "tasty" }];
- * * var element = { name: "tom", text: "tasty" };
- * * array.pushIfNotExist(element, function(e) { return e.name === element.name && e.text === element.text; });
  */
 Array.prototype.pushIfNotExist = function(element, comparer) { 
-	if (!this.inArray(comparer)) {
+	if (!this.isInArray(comparer)) {
 		this.push(element);
 	}
+};
+
+Utils.isFunction = function(functionToCheck) {
+	var getType = {};
+	return functionToCheck
+			&& getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/*
+ * return true if value is undefined, null, isNotFunction, with length = 0 or an object without keys
+ * else return false
+ */
+Utils.isUndefinedNullOrEmpty = function(value){		
+	if(typeof value === "undefined" || value == null)
+		return true;
+	
+	if(!Utils.isFunction(value)){
+		if((Array.isArray(value) && value.length == 0) || (Object.keys(value).length == 0))
+			return true;
+	}
+	
+	return false;
 };
 
 /*
@@ -66,12 +100,10 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
  */
 Utils.isEmpty = function (arrToCheck){
 	if(typeof arrToCheck === "undefined" || arrToCheck == null){
-		return true;
-		
+		return true;		
 	}else{
 		if(arrToCheck.length == 0){
-			return true;
-			
+			return true;			
 		}else{
 			for(var key in arrToCheck) {
 				if(typeof key !== "undefined"){
