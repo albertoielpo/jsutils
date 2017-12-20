@@ -40,6 +40,12 @@ Utils.removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){ };
 
 //Input: date; Output: date formatted as dd/mm/yyyy hh24:mi (String)
 Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) { };
+
+/*
+ * return true if two valid JSON object are equals
+ * else return false 
+ */
+var areTheseJsonEquals = function(obj1, obj2, forceParseInt){ };
 ```
 ## Array prototype constructors
 ```
