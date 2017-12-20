@@ -17,32 +17,42 @@ Utils.compareJson = function (obj1, obj2, forceParseInt) { };
  * return [(obj2-obj1), (obj1-obj2)} if not 
  * ====
  * twoWaysCompareJson({a: 5, b: 4, c: 3}, {a: 5, b: 3}); //[{b: 3}, {b: 4, c: 3}]
- * */
+ */
 Utils.twoWaysCompareJson = function(obj1, obj2, forceParseInt) { };
 
-//return true if is a function
+/*
+ * Return true if is a function
+ */ 
 Utils.isFunction(functionToCheck) { }
 
 /*
- * return true if value is undefined, null, isNotFunction, with length = 0 or an object without keys
+ * Return true if value is undefined, null, isNotFunction, with length = 0 or an object without keys
  * else return false
  */
 Utils.isUndefinedNullOrEmpty(value){ };
 
-//Return diff between two arrays 
+/*
+ * Return diff between two arrays 
+ */ 
 Utils.arrayDiff = function (a,b){ };
 
-//This object is empty ? Output: boolean
+/*
+ * This object is empty ? Output: boolean
+ */
 Utils.isEmpty = function (arrToCheck){ };
 
-//Removes all holes from an array; if removeEmptyObject = true , removes also empty objects "{}"
+/*
+ * Removes all holes from an array; if removeEmptyObject = true , removes also empty objects "{}"
+ */
 Utils.removeHolesFromArray = function(arrayWithHoles, removeEmptyObject){ };
 
-//Input: date; Output: date formatted as dd/mm/yyyy hh24:mi (String)
+/*
+ * Input: date; Output: date formatted as dd/mm/yyyy hh24:mi (String)
+ */
 Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) { };
 
 /*
- * return true if two valid JSON object are equals
+ * Return true if two valid JSON object are equals
  * else return false 
  */
 var areTheseJsonEquals = function(obj1, obj2, forceParseInt){ };
