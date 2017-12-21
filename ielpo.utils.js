@@ -176,3 +176,17 @@ Utils.areTheseJsonEquals = function(obj1, obj2, forceParseInt){
 	
 	return false;
 };
+
+/*
+ * Swap object keys and values
+ * swapKeysValues({a:1, b:2}) //{1:"a", 2:"b"}
+ */
+Utils.swapKeysValues = function (obj) {
+	var newObj = {};
+	for (var prop in obj) {
+		if(obj.hasOwnProperty(prop)) {
+			newObj[obj[prop]] = prop;
+		}
+	}
+	return newObj;
+};
