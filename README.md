@@ -11,6 +11,7 @@
  * compareJson({a: 5, b: 4, c: 3}, {a: 5, b: 3}); //{b: 3}
  */
 Utils.compareJson = function (obj1, obj2, forceParseInt) { }; 
+
 /*
  * Compare two valid JSON object in both directions 
  * return [{},{}] if equals
@@ -55,7 +56,14 @@ Utils.formatDate_DDMMYYYYHHMM = function (dateToFormat) { };
  * Return true if two valid JSON object are equals
  * else return false 
  */
-var areTheseJsonEquals = function(obj1, obj2, forceParseInt){ };
+Utils.areTheseJsonEquals = function(obj1, obj2, forceParseInt){ };
+
+/*
+ * Swap object keys and values
+ * swapKeysValues({a:1, b:2}) //{1:"a", 2:"b"}
+ */
+Utils.swapKeysValues = function (obj) { };
+
 ```
 ## Array prototype constructors
 ```
