@@ -80,15 +80,17 @@ Utils.isFunction = function(functionToCheck) {
 };
 
 /*
- * return true if value is undefined, null, isNotFunction, with length = 0 or an object without keys
+ * Return true if value is undefined or null or isNotFunction and (with length = 0 if array or an object without keys or empty string)
  * else return false
  */
 Utils.isUndefinedNullOrEmpty = function(value){		
 	if(typeof value === "undefined" || value == null)
 		return true;
 	
-	if(!Utils.isFunction(value)){
-		if((Array.isArray(value) && value.length == 0) || (Object.keys(value).length == 0))
+	if(!isFunction(value)){
+		if((Array.isArray(value) && value.length == 0) || 
+				(typeof value === "object" && Object.keys(value).length == 0) || 
+				(typeof value === "string" && value == ""))
 			return true;
 	}
 	
