@@ -64,6 +64,10 @@ Utils.areTheseJsonEquals = function(obj1, obj2, forceParseInt){ };
  */
 Utils.swapKeysValues = function (obj) { };
 
+/* 
+ * get float value from any number or string - return null otherwise 
+ */
+Utils.getFloatValue = function (number){ };
 ```
 ## Array prototype constructors
 ```

@@ -192,3 +192,26 @@ Utils.swapKeysValues = function (obj) {
 	}
 	return newObj;
 };
+
+/* 
+ * get float value from any number or string - return null otherwise 
+ */
+Utils.getFloatValue = function (number){
+	try{		
+		if(!isUndefinedNullOrEmpty(number)){
+			if(typeof number === "string"){
+				number = number.replace(/,/gi, ".");
+				if(number.split(".").length - 1 > 1)
+					return null;
+			}
+								
+			var res = parseFloat(number);
+			if(!isNaN(res))
+				return res;
+		}
+	} catch(err){		
+		return null;
+	}
+	
+	return null;
+};
