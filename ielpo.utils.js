@@ -215,3 +215,15 @@ Utils.getFloatValue = function (number){
 	
 	return null;
 };
+
+/*
+ * Remove all instances of a certain element from an array 
+ */
+Utils.removeElementFromArray = function(arr, item){
+	for(var ii=0; ii<arr.length; ii++){
+		if(arr[ii] == item){
+			arr.splice(ii,1);
+			ii--;
+		}
+	}
+};
