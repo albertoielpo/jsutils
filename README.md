@@ -68,6 +68,11 @@ Utils.swapKeysValues = function (obj) { };
  * get float value from any number or string - return null otherwise 
  */
 Utils.getFloatValue = function (number){ };
+
+/*
+ * Remove all instances of a certain element from an array 
+ */
+Utils.removeElementFromArray = function(arr, item){ };
 ```
 ## Array prototype constructors
 ```
