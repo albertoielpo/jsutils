@@ -87,7 +87,7 @@ Utils.isUndefinedNullOrEmpty = function(value){
 	if(typeof value === "undefined" || value == null)
 		return true;
 	
-	if(!isFunction(value)){
+	if(!Utils.isFunction(value)){
 		if((Array.isArray(value) && value.length == 0) || 
 				(typeof value === "object" && Object.keys(value).length == 0) || 
 				(typeof value === "string" && value == ""))
@@ -198,7 +198,7 @@ Utils.swapKeysValues = function (obj) {
  */
 Utils.getFloatValue = function (number){
 	try{		
-		if(!isUndefinedNullOrEmpty(number)){
+		if(!Utils.isUndefinedNullOrEmpty(number)){
 			if(typeof number === "string"){
 				number = number.replace(/,/gi, ".");
 				if(number.split(".").length - 1 > 1)
