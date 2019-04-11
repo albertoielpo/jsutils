@@ -73,6 +73,26 @@ Utils.getFloatValue = function (number){ };
  * Remove all instances of a certain element from an array 
  */
 Utils.removeElementFromArray = function(arr, item){ };
+
+/**
+ * Return a String formatted with Quartz-Cron syntax 
+ * Ex: * * * * * ? * (sec min hour day month ? year)
+ * @param {Date} d 
+ */
+Utils.getQuartzCronStr = function(d) { };
+
+/**
+ * Return a Date using a quartz/cron string
+ * @param {String} str 
+ */
+Utils.getDateFromQuartzCronStr = function(str){ };
+
+/**
+ * Return true if "n" is zero or positive
+ * @param {Number} n 
+ */
+Utils.isPositiveOrZero = function(n){ };
+
 ```
 ## Array prototype constructors
 ```

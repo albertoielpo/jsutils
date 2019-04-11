@@ -227,3 +227,45 @@ Utils.removeElementFromArray = function(arr, item){
 		}
 	}
 };
+
+/**
+ * Return a String formatted with Quartz-Cron syntax 
+ * Ex: * * * * * ? * (sec min hour day month ? year)
+ * @param {Date} d 
+ */
+Utils.getQuartzCronStr = function(d) {
+	if (d instanceof Date && !isNaN(d)) {
+		var mon = d.getMonth();
+		var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"][mon];
+		return (d.getSeconds() + " " + d.getMinutes() + " " + d.getHours() + " " + d.getDate() + " " 
+			+ month + " ? " + d.getFullYear());
+	} else {
+		return null;
+	}
+};
+
+/**
+ * Return a Date using a quartz/cron string
+ * @param {String} str 
+ */
+Utils.getDateFromQuartzCronStr = function(str){
+	var arr = getFromCronExpression(str);
+	var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"].indexOf(arr[4])
+	if(arr && arr.length > 6){
+		return (new Date(arr[6], month, arr[3], arr[2], arr[1], arr[0], 0));
+	} else {
+		return null;
+	}	
+};
+
+/**
+ * Return true if "n" is zero or positive
+ * @param {Number} n 
+ */
+Utils.isPositiveOrZero = function(n){
+	if(isNumber(n)){
+		return n >= 0;
+	} else {
+		return false;
+	}
+};
